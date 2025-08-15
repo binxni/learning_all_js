@@ -4,12 +4,21 @@ This repository contains a complete F1TENTH autonomous racing system with locali
 
 ## System Architecture
 
-The autonomous racing system consists of four main components that must be launched in sequence:
+The autonomous racing system provides two navigation approaches:
+
+### Option 1: Full Autonomous Racing System
+Four main components launched in sequence:
 
 1. **Localization** - Particle filter for robot pose estimation
 2. **F1TENTH System** - Hardware interface (real car) or Simulation bridge 
 3. **Path Planning** - Lattice planner for trajectory generation
 4. **Path Following** - Controller to execute planned trajectories
+
+### Option 2: Reactive Navigation (Simple)
+Basic obstacle avoidance using only LiDAR:
+
+1. **F1TENTH System** - Hardware interface or Simulation bridge
+2. **Follow the Gap** - Reactive LiDAR-only navigation
 
 ## Installation
 
@@ -49,7 +58,9 @@ source install/setup.bash
 
 ## Usage Instructions
 
-### Step 1: Launch Localization (Particle Filter)
+### Option A: Full Autonomous Racing System
+
+#### Step 1: Launch Localization (Particle Filter)
 
 Choose the appropriate localization mode:
 
@@ -112,6 +123,40 @@ ros2 launch path_follower_pkg path_follower.launch.py sim_mode:=false
 ```bash
 ros2 launch path_follower_pkg path_follower.launch.py sim_mode:=true
 ```
+
+### Option B: Reactive Navigation (Simple)
+
+For basic obstacle avoidance without localization or planning:
+
+#### For Real Car
+```bash
+# Terminal 1: Hardware interface
+ros2 launch f1tenth_stack bringup_launch.py
+
+# Terminal 2: Reactive navigation
+ros2 run gap_follow reactive_node
+```
+
+#### For Simulation
+```bash
+# Terminal 1: Simulation environment  
+ros2 launch f1tenth_gym_ros gym_bridge_launch.py
+
+# Terminal 2: Reactive navigation
+ros2 run gap_follow reactive_node
+```
+
+**Advantages:**
+- No localization or mapping required
+- Fast setup and testing
+- Real-time reactive obstacle avoidance
+- Works in unknown environments
+
+**Use Cases:**
+- Quick testing and demos
+- Learning F1TENTH basics
+- Simple navigation tasks
+- Fallback when full system fails
 
 ## Launch Parameters
 
@@ -227,9 +272,25 @@ Monitor these topics for debugging:
 
 ```
 src/
-├── f1tenth_base_setup/         # F1TENTH hardware drivers and configs
-├── f1tenth_gym_ros/            # F1TENTH Gym simulation bridge  
-├── particle_filter_cpp/        # Localization system
-├── lattice_planner_f1tenth/    # Path planning algorithms
-└── lattice_path_follower_f1tenth/ # Path following control
+├── f1tenth_base_setup/              # F1TENTH hardware drivers and configs
+├── f1tenth_gym_ros/                 # F1TENTH Gym simulation bridge  
+├── particle_filter_cpp/             # Localization system
+├── lattice_planner_f1tenth/         # Path planning algorithms  
+├── lattice_path_follower_f1tenth/   # Path following control
+├── basecode_follow_the_gap/         # Reactive LiDAR-only navigation
+└── f1tenth_planning_custom_msgs/    # Custom message definitions
 ```
+
+### Navigation Approaches
+
+**Full System (Competition Ready):**
+- Advanced localization with particle filter
+- Optimal path planning with lattice planner
+- Precise trajectory following control
+- Best for racing performance
+
+**Reactive System (Simple & Fast):**
+- LiDAR-only obstacle avoidance
+- No localization or mapping required  
+- Real-time reactive navigation
+- Best for learning and quick testing
