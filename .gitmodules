@@ -16,3 +16,6 @@
 [submodule "src/f1tenth_base_setup"]
 	path = src/f1tenth_base_setup
 	url = https://github.com/2025-AILAB-Internship-F1TheBeast/f1tenth_base_setup.git
+[submodule "src/basecode_follow_the_gap"]
+	path = src/basecode_follow_the_gap
+	url = https://github.com/2025-AILAB-Internship-F1TheBeast/basecode_follow_the_gap.git
