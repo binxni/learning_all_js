@@ -19,3 +19,6 @@
 [submodule "src/basecode_follow_the_gap"]
 	path = src/basecode_follow_the_gap
 	url = https://github.com/2025-AILAB-Internship-F1TheBeast/basecode_follow_the_gap.git
+[submodule "src/learning_code"]
+	path = src/learning_code
+	url = git@github.com:binxni/learning_code.git
