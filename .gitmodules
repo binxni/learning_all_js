@@ -6,10 +6,10 @@
 	url = https://github.com/thejourneyofbabo/f1tenth_gym_ros.git
 [submodule "src/lattice_path_follower_f1tenth"]
 	path = src/lattice_path_follower_f1tenth
-	url = https://github.com/thejourneyofbabo/lattice_path_follower_f1tenth.git
+	url = https://github.com/2025-AILAB-Internship-F1TheBeast/lattice_path_follower_f1tenth.git
 [submodule "src/lattice_planner_f1tenth"]
 	path = src/lattice_planner_f1tenth
-	url = https://github.com/thejourneyofbabo/lattice_planner_f1tenth.git
+	url = https://github.com/2025-AILAB-Internship-F1TheBeast/lattice_planner_f1tenth.git
 [submodule "src/particle_filter_cpp"]
 	path = src/particle_filter_cpp
 	url = https://github.com/2025-AILAB-Internship-F1TheBeast/particle_filter_cpp.git

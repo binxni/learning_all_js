@@ -104,3 +104,8 @@ Cargo.lock
 .venv/
 venv/
 *.egg-info/
+=======
+build/
+install/
+log/
+**/.vscode/
