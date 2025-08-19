@@ -1,4 +1,5 @@
 import math
+from pathlib import Path
 from typing import List
 
 import numpy as np
@@ -17,13 +18,21 @@ class PytorchPlanner(Node):
 
     def __init__(self) -> None:
         super().__init__('pytorch_planner')
-        self.declare_parameter('model_path', '')
-        model_path = self.get_parameter('model_path').get_parameter_value().string_value
-        if not model_path:
-            self.get_logger().warn('No model_path parameter provided, planner will not run.')
+        self.declare_parameter('model_path', 'model/mobilenet_trained_updated.pt')
+        model_path_param = (
+            self.get_parameter('model_path').get_parameter_value().string_value
+        )
+        if not model_path_param:
+            self.get_logger().warn(
+                'No model_path parameter provided, planner will not run.'
+            )
             self.model = None
         else:
-            self.model = torch.jit.load(model_path)
+            model_path = Path(model_path_param)
+            if not model_path.is_absolute():
+                package_dir = Path(__file__).resolve().parent.parent
+                model_path = package_dir / model_path
+            self.model = torch.jit.load(str(model_path))
             self.model.eval()
 
         # Synchronize LaserScan and PolarGrid messages
