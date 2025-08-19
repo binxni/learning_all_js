@@ -22,3 +22,6 @@
 [submodule "src/obstacle_detection_pkg"]
 	path = src/obstacle_detection_pkg
 	url = https://github.com/2025-AILAB-Internship-F1TheBeast/obstacle_detection_pkg.git
+[submodule "src/data_collection_pkg_for_ml_local_planning"]
+	path = src/data_collection_pkg_for_ml_local_planning
+	url = https://github.com/2025-AILAB-Internship-F1TheBeast/data_collection_pkg_for_ml_local_planning.git
