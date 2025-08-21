@@ -33,9 +33,11 @@ ros2 run global_to_polar_cpp global_to_polar_node \
 사전 학습된 PyTorch 모델을 이용해 로컬 경로를 생성합니다.
 
 ```bash
-ros2 run pytorch_planner_pkg planner_node \
-  --ros-args -p model_path:=src/pytorch_planner_pkg/model/mobilenet_trained_updated.pt
+ros2 run pytorch_planner_pkg planner_node \\
+  --ros-args --params-file src/pytorch_planner_pkg/params.yaml
 ```
+
+`params.yaml` 파일의 `model_path` 항목을 수정하면 다른 학습 모델을 사용할 수 있습니다.
 
 노드는 `/scan`과 `/polar_grid` 토픽을 구독하고,
 `/planned_path_with_velocity` 토픽으로 16개의 웨이포인트를 발행합니다.

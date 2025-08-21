@@ -18,7 +18,7 @@ class PytorchPlanner(Node):
 
     def __init__(self) -> None:
         super().__init__('pytorch_planner')
-        self.declare_parameter('model_path', 'model/mobilenet_trained_updated.pt')
+        self.declare_parameter('model_path', '')
         model_path_param = (
             self.get_parameter('model_path').get_parameter_value().string_value
         )
