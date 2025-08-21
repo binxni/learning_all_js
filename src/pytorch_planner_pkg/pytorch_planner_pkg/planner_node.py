@@ -71,7 +71,7 @@ class PytorchPlanner(Node):
 
         with torch.no_grad():
             outputs = self.model(inputs)
-        outputs = outputs.squeeze(0).cpu().numpy()  # (16, 4)
+        outputs = outputs.squeeze(0).cpu().numpy()  # (10, 4)
 
         msg = PathWithVelocity()
         msg.header.stamp = self.get_clock().now().to_msg()
@@ -85,9 +85,9 @@ class PytorchPlanner(Node):
             waypoint.velocity = float(row[3])
             msg.points.append(waypoint)
 
-        # Ensure the message always has 16 waypoints
-        if len(msg.points) < 16:
-            for _ in range(16 - len(msg.points)):
+        # Ensure the message always has 10 waypoints
+        if len(msg.points) < 10:
+            for _ in range(10 - len(msg.points)):
                 msg.points.append(Waypoint())
 
         self.publisher.publish(msg)

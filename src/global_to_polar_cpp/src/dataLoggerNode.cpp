@@ -81,12 +81,12 @@ private:
         for (int i = 0; i < 1080; ++i) {
             csv_file_ << "grid_" << i << ",";
         }
-        // PathWithVelocity headers (16 points with x, y, v, yaw)
-        for (int i = 0; i < 16; ++i) {
+        // PathWithVelocity headers (10 points with x, y, v, yaw)
+        for (int i = 0; i < 10; ++i) {
             csv_file_ << "x" << (i+1) << ",";
             csv_file_ << "y" << (i+1) << ",";
             csv_file_ << "v" << (i+1) << ",";
-            csv_file_ << "yaw" << (i+1) << (i == 15 ? "" : ",");
+            csv_file_ << "yaw" << (i+1) << (i == 9 ? "" : ",");
         }
         csv_file_ << "\n";
     }
@@ -143,17 +143,17 @@ private:
             csv_file_ << last_grid_->ranges[i] << ",";
         }
 
-        // Write PathWithVelocity data (16 points with x, y, v, yaw)
-        for (int i = 0; i < 16; ++i) {
+        // Write PathWithVelocity data (10 points with x, y, v, yaw)
+        for (int i = 0; i < 10; ++i) {
             if (i < static_cast<int>(last_path_->points.size())) {
                 const auto& point = last_path_->points[i];
                 csv_file_ << point.x << ",";
                 csv_file_ << point.y << ",";
                 csv_file_ << point.velocity << ",";
-                csv_file_ << point.yaw << (i == 15 ? "" : ",");
+                csv_file_ << point.yaw << (i == 9 ? "" : ",");
             } else {
                 // Pad with zeros for missing points
-                csv_file_ << "0,0,0,0" << (i == 15 ? "" : ",");
+                csv_file_ << "0,0,0,0" << (i == 9 ? "" : ",");
             }
         }
         csv_file_ << "\n";
